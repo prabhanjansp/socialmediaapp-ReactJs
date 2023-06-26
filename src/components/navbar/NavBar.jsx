@@ -5,11 +5,18 @@ import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import PersonIcon from "@mui/icons-material/Person";
 import SearchIcon from "@mui/icons-material/Search";
 import "../navbar/navBar.scss";
+import { useContext } from "react";
+import { DarkModeContext } from "../../context/darkModeContext";
+import { AuthContext } from "../../context/authContext";
 
 const Navbar = () => {
+  const { toggle, darkMode } = useContext(DarkModeContext);
+  const { currentUser } = useContext(AuthContext);
+
   return (
     <div className="navbar">
       <div className="left">
@@ -17,7 +24,11 @@ const Navbar = () => {
           <span>Social App</span>
         </Link>
         <HomeOutlinedIcon />
-        <DarkModeOutlinedIcon />
+        {darkMode ? (
+          <WbSunnyIcon onClick={toggle} />
+        ) : (
+          <DarkModeOutlinedIcon onClick={toggle} />
+        )}
         <GridViewOutlinedIcon />
         <div className="search">
           <SearchIcon />
@@ -35,10 +46,13 @@ const Navbar = () => {
         <NotificationsOutlinedIcon />
         <div className="user">
           <img
-            src="https://www.vhv.rs/dpng/d/436-4363443_view-user-icon-png-font-awesome-user-circle.png"
+            src={currentUser.profilepicture}
+            width={50}
+            height={50}
+            style={{ borderRadius: "50%", objectFit: "cover" }}
             alt="UserImage"
           />
-          <span>Prabhanjan</span>
+          <span>{currentUser.name}</span>
         </div>
       </div>
     </div>

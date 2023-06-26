@@ -1,0 +1,7 @@
+@import "../../style.scss";
+.home {
+  @include themeChange($themes) {
+    background-color: themed("bgSoft");
+    padding: 20px 70px;
+  }
+}
