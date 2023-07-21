@@ -46,7 +46,7 @@ const Navbar = () => {
         <NotificationsOutlinedIcon />
         <div className="user">
           <img
-            src={currentUser.profilepicture}
+            src={currentUser.profilePic}
             width={50}
             height={50}
             style={{ borderRadius: "50%", objectFit: "cover" }}
